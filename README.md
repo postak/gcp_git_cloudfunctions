@@ -8,7 +8,7 @@ After you created the repository you need to add two secrets to it
 - GCP_PROJECT containing id of your GCP project
 - GCP_CREDENTIALS containing the credential json file you create using the following commands
 
-`
+```
 export YOUR_PROJECT_ID=put-your-project
 export YOUR_ACCOUNT_NAME=put-your-account
 
@@ -35,4 +35,4 @@ gcloud projects add-iam-policy-binding $YOUR_PROJECT_ID \
 
 gcloud iam service-accounts keys create key.json \
     --iam-account $YOUR_ACCOUNT_NAME@$YOUR_PROJECT_ID.iam.gserviceaccount.com
-`
+```
