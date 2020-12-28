@@ -1,0 +1,26 @@
+name: deploy-cloud-functions Integration
+
+on: [push, pull_request]
+
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+    - name: Deploy a Cloud Function
+      id: deploy-function
+      uses: google-github-actions/deploy-cloud-functions@main
+      with:
+        name: my-function
+        runtime: python37
+        # better to use a subdir (default ./) otherwise it will add to functions also the .git directory and
+        # the cloud functions is not able to show the sources
+        source_dir: ./src
+        entry_point: hello_world
+        project_id: ${{ secrets.gcp_project }}
+        credentials: ${{ secrets.gcp_credentials }}
+
